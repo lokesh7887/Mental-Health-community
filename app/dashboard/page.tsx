@@ -34,7 +34,7 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       {/* Header */}
-      <header className="border-b border-blue-100 bg-white/80 backdrop-blur-sm">
+      {/* <header className="border-b border-blue-100 bg-white/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <Heart className="h-8 w-8 text-blue-600" />
@@ -48,7 +48,7 @@ export default function DashboardPage() {
             </Button>
           </div>
         </div>
-      </header>
+      </header> */}
 
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">

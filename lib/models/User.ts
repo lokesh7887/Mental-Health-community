@@ -13,6 +13,14 @@ export interface IUser extends Document {
   updatedAt: Date
   comparePassword(candidatePassword: string): Promise<boolean>
   generateJWT(): string
+  anonymousId: string
+  displayName: string
+  getPublicProfile(viewerId?: string): any
+  savedPosts: mongoose.Types.ObjectId[]
+  upvotedPosts: mongoose.Types.ObjectId[]
+  karma: number
+  bio: string
+  lastActive: Date
 }
 
 const userSchema = new Schema<IUser>(
@@ -47,6 +55,37 @@ const userSchema = new Schema<IUser>(
       type: Boolean,
       default: true,
     },
+    anonymousId: {
+      type: String,
+      default: () => `anon_${Math.random().toString(36).slice(2, 9)}`,
+      unique: true,
+    },
+    displayName: {
+      type: String,
+      default: function() {
+        return `Anonymous${this.anonymousId.slice(-4)}`
+      }
+    },
+    savedPosts: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Post'
+    }],
+    upvotedPosts: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Post'
+    }],
+    karma: {
+      type: Number,
+      default: 0
+    },
+    bio: {
+      type: String,
+      maxlength: 500
+    },
+    lastActive: {
+      type: Date,
+      default: Date.now
+    }
   },
   {
     timestamps: true,
@@ -78,6 +117,27 @@ userSchema.methods.generateJWT = function (): string {
     config.jwtSecret,
     { expiresIn: "7d" },
   )
+}
+
+// Add method to get public profile
+userSchema.methods.getPublicProfile = function(viewerId?: string) {
+  const isOwnProfile = viewerId?.toString() === this._id.toString()
+  
+  if (isOwnProfile) {
+    return {
+      id: this._id,
+      username: this.username,
+      email: this.email,
+      role: this.role,
+      isOwn: true
+    }
+  }
+
+  return {
+    id: this.anonymousId,
+    username: this.displayName,
+    isOwn: false
+  }
 }
 
 export const User = mongoose.models.User || mongoose.model<IUser>("User", userSchema)

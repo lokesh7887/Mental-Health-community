@@ -25,6 +25,9 @@ interface Suggestions {
 
 class AIClient {
   private async makeRequest(endpoint: string, data: any): Promise<any> {
+    console.log("🤖 Making AI request to OpenRouter...")
+    console.log("📝 Request data:", JSON.stringify(data, null, 2))
+    
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -39,11 +42,17 @@ class AIClient {
       }),
     })
 
+    console.log("📡 Response status:", response.status)
+    
     if (!response.ok) {
-      throw new Error(`AI request failed: ${response.status}`)
+      const errorText = await response.text()
+      console.error("❌ AI request failed:", response.status, errorText)
+      throw new Error(`AI request failed: ${response.status} - ${errorText}`)
     }
 
-    return response.json()
+    const responseData = await response.json()
+    console.log("✅ AI request successful")
+    return responseData
   }
 
   async getSupport(message: string): Promise<AIResponse> {

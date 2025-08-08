@@ -6,25 +6,7 @@ import Link from "next/link"
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-      {/* Header */}
-      <header className="border-b border-blue-100 bg-white/80 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <Heart className="h-8 w-8 text-blue-600" />
-            <h1 className="text-2xl font-bold text-gray-800">MindSpace</h1>
-          </div>
-          <nav className="flex space-x-4">
-            <Link href="/auth/login">
-              <Button variant="ghost" className="text-blue-600 hover:text-blue-700">
-                Sign In
-              </Button>
-            </Link>
-            <Link href="/auth/signup">
-              <Button className="bg-blue-600 hover:bg-blue-700">Get Started</Button>
-            </Link>
-          </nav>
-        </div>
-      </header>
+      {/* Header removed — global `Header` is rendered in `app/layout.tsx` */}
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-16 text-center">

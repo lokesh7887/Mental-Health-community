@@ -266,11 +266,10 @@ export default function CommunityPage() {
           {filteredPosts.map((post) => (
             <Card key={post._id} className="hover:shadow-md transition-shadow">
               <CardContent className="p-6">
-                {/* Add this near the top of the card content */}
+                {/* Post header with delete button for owners */}
                 <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 className="text-lg font-semibold">{post.title}</h3>
-                    {/* ...existing title/author content... */}
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">{post.title}</h3>
                   </div>
                   {isPostOwner(post) && (
                     <Button
@@ -314,7 +313,6 @@ export default function CommunityPage() {
 
                   {/* Content */}
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">{post.title}</h3>
                     <p className="text-gray-600 mb-3 leading-relaxed">{post.content}</p>
 
                     {/* Tags */}

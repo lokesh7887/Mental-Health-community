@@ -52,6 +52,7 @@ export default function AISupportPage() {
   const [showSuggestions, setShowSuggestions] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
     const token = localStorage.getItem("token")
@@ -63,6 +64,10 @@ export default function AISupportPage() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [messages])
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   const analyzeMood = async (text: string) => {
     try {
@@ -269,9 +274,12 @@ export default function AISupportPage() {
                         <div className="flex-1">
                           <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
                           <div className="flex items-center justify-between mt-1">
-                            <p className={`text-xs ${message.sender === "user" ? "text-blue-100" : "text-gray-500"}`}>
-                              {message.timestamp.toLocaleTimeString()}
-                            </p>
+                            <time
+                              className={`text-xs ${message.sender === "user" ? "text-blue-100" : "text-gray-500"}`}
+                              suppressHydrationWarning
+                            >
+                              {isClient ? message.timestamp.toLocaleTimeString() : ""}
+                            </time>
                             {message.model && (
                               <Badge variant="outline" className="text-xs">
                                 {message.model}

@@ -49,12 +49,50 @@ function validateConfig(): Config {
   }
 
   return {
+    // Server
     nodeEnv: process.env.NODE_ENV || "development",
     port: Number.parseInt(process.env.PORT || "3000", 10),
+
+    // Database
     mongodbUri: process.env.MONGODB_URI!,
+    mongodbTestUri: process.env.MONGODB_TEST_URI || process.env.MONGODB_URI!,
+
+    // Authentication
     jwtSecret: process.env.JWT_SECRET!,
+    jwtExpire: process.env.JWT_EXPIRE || "7d",
+
+    // API Keys
     openrouterApiKey: process.env.OPENROUTER_API_KEY!,
+
+    // CORS
     allowedOrigins: process.env.ALLOWED_ORIGINS?.split(",") || ["http://localhost:3000"],
+
+    // Features
+    enableMoodAnalysis: process.env.ENABLE_MOOD_ANALYSIS === "true",
+    enableAiSuggestions: process.env.ENABLE_AI_SUGGESTIONS === "true",
+    enableRealTimeChat: process.env.ENABLE_REAL_TIME_CHAT === "true",
+    enableCommunityFeatures: process.env.ENABLE_COMMUNITY_FEATURES === "true",
+
+    // Logging
+    logLevel: process.env.LOG_LEVEL || "info",
+    enableDebugLogging: process.env.ENABLE_DEBUG_LOGGING === "true",
+
+    // Rate Limiting
+    rateLimitWindowMs: Number.parseInt(process.env.RATE_LIMIT_WINDOW_MS || "900000", 10),
+    rateLimitMaxRequests: Number.parseInt(process.env.RATE_LIMIT_MAX_REQUESTS || "100", 10),
+
+    // File Upload
+    maxFileSize: Number.parseInt(process.env.MAX_FILE_SIZE || "10485760", 10),
+    allowedFileTypes: process.env.ALLOWED_FILE_TYPES?.split(",") || [
+      "image/jpeg",
+      "image/png",
+      "image/gif",
+      "image/webp",
+    ],
+
+    // External Services
+    sentryDsn: process.env.SENTRY_DSN,
+    redisUrl: process.env.REDIS_URL,
   }
 }
 
