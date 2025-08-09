@@ -50,30 +50,30 @@ export default function DashboardPage() {
         </div>
       </header> */}
 
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">Your Safe Space Dashboard</h2>
-          <p className="text-gray-600">Choose how you'd like to connect and find support today.</p>
+      <div className="container mx-auto px-4 py-6 sm:py-8">
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Your Safe Space Dashboard</h2>
+          <p className="text-gray-600 text-sm sm:text-base">Choose how you'd like to connect and find support today.</p>
         </div>
 
         {/* Quick Actions */}
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
           <Link href="/ai-support">
             <Card className="border-blue-200 hover:shadow-lg transition-all duration-300 cursor-pointer hover:border-blue-300">
               <CardHeader>
                 <div className="flex items-center space-x-3">
-                  <Brain className="h-8 w-8 text-blue-600" />
+                  <Brain className="h-6 w-6 sm:h-8 sm:w-8 text-blue-600" />
                   <div>
-                    <CardTitle className="text-blue-800">AI Emotional Support</CardTitle>
-                    <CardDescription>Talk to our empathetic AI companion</CardDescription>
+                    <CardTitle className="text-blue-800 text-lg sm:text-xl">AI Emotional Support</CardTitle>
+                    <CardDescription className="text-sm">Talk to our empathetic AI companion</CardDescription>
                   </div>
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-4 text-sm sm:text-base">
                   Share your feelings in a private, judgment-free space. Get supportive responses and coping strategies.
                 </p>
-                <Button className="bg-blue-600 hover:bg-blue-700">Start Conversation</Button>
+                <Button className="bg-blue-600 hover:bg-blue-700 text-xs sm:text-sm">Start Conversation</Button>
               </CardContent>
             </Card>
           </Link>
@@ -82,18 +82,18 @@ export default function DashboardPage() {
             <Card className="border-purple-200 hover:shadow-lg transition-all duration-300 cursor-pointer hover:border-purple-300">
               <CardHeader>
                 <div className="flex items-center space-x-3">
-                  <Users className="h-8 w-8 text-purple-600" />
+                  <Users className="h-6 w-6 sm:h-8 sm:w-8 text-purple-600" />
                   <div>
-                    <CardTitle className="text-purple-800">Community Forum</CardTitle>
-                    <CardDescription>Connect with others who understand</CardDescription>
+                    <CardTitle className="text-purple-800 text-lg sm:text-xl">Community Forum</CardTitle>
+                    <CardDescription className="text-sm">Connect with others who understand</CardDescription>
                   </div>
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-4 text-sm sm:text-base">
                   Share experiences, ask questions, and support others in a safe, anonymous environment.
                 </p>
-                <Button className="bg-purple-600 hover:bg-purple-700">Join Discussion</Button>
+                <Button className="bg-purple-600 hover:bg-purple-700 text-xs sm:text-sm">Join Discussion</Button>
               </CardContent>
             </Card>
           </Link>

@@ -76,11 +76,11 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="container mx-auto py-12 px-4">
-      <h2 className="text-3xl font-bold mb-6">My Posts</h2>
+    <div className="container mx-auto py-6 sm:py-12 px-4">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">My Posts</h2>
       {posts.length === 0 ? (
         <Card>
-          <CardContent className="text-center py-12">
+          <CardContent className="text-center py-8 sm:py-12">
             <p className="text-gray-600 mb-4">You haven't posted anything yet.</p>
             <Button onClick={() => router.push("/community")} className="bg-blue-600 hover:bg-blue-700">
               Create Your First Post
@@ -88,18 +88,18 @@ export default function ProfilePage() {
           </CardContent>
         </Card>
       ) : (
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {posts.map((post) => (
             <Card key={post._id} className="hover:shadow-md transition-shadow">
-              <CardContent className="p-6">
+              <CardContent className="p-4 sm:p-6">
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-gray-800 mb-2">{post.title}</h3>
                     <p className="text-gray-600 mb-3 leading-relaxed">{post.content}</p>
                     
                     {/* Meta information */}
-                    <div className="flex items-center justify-between text-sm text-gray-500">
-                      <div className="flex items-center space-x-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-gray-500 space-y-2 sm:space-y-0">
+                      <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-4">
                         <span>Category: {post.category}</span>
                         <span>
                           {new Date(post.createdAt).toLocaleDateString(undefined, {
@@ -134,14 +134,15 @@ export default function ProfilePage() {
                     size="sm"
                     onClick={() => handleDeletePost(post._id)}
                     disabled={isDeleting === post._id}
-                    className="ml-4"
+                    className="ml-2 sm:ml-4 text-xs sm:text-sm"
                   >
                     {isDeleting === post._id ? (
                       "Deleting..."
                     ) : (
                       <>
-                        <Trash2 className="h-4 w-4 mr-1" />
-                        Delete
+                        <Trash2 className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+                        <span className="hidden sm:inline">Delete</span>
+                        <span className="sm:hidden">Del</span>
                       </>
                     )}
                   </Button>

@@ -181,43 +181,60 @@ export default function CommunityPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       {/* Header */}
       <header className="border-b border-blue-100 bg-white/80 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <Link href="/dashboard">
-              <Button variant="ghost" size="sm">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Dashboard
-              </Button>
-            </Link>
-            <div className="flex items-center space-x-2">
-              <Heart className="h-6 w-6 text-purple-600" />
-              <h1 className="text-xl font-bold text-gray-800">Community Forum</h1>
+        <div className="container mx-auto px-4 py-3 sm:py-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <Link href="/dashboard">
+                <Button variant="ghost" size="sm" className="text-xs sm:text-sm">
+                  <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                  <span className="hidden sm:inline">Back to Dashboard</span>
+                  <span className="sm:hidden">Back</span>
+                </Button>
+              </Link>
+              <div className="flex items-center space-x-2">
+                <Heart className="h-5 w-5 sm:h-6 sm:w-6 text-purple-600" />
+                <h1 className="text-lg sm:text-xl font-bold text-gray-800">Community Forum</h1>
+              </div>
             </div>
+            <Button 
+              onClick={() => setShowCreatePost(true)} 
+              className="bg-purple-600 hover:bg-purple-700 text-xs sm:text-sm px-3 sm:px-4"
+            >
+              <Plus className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">New Post</span>
+              <span className="sm:hidden">Post</span>
+            </Button>
           </div>
-          <Button onClick={() => setShowCreatePost(true)} className="bg-purple-600 hover:bg-purple-700">
-            <Plus className="h-4 w-4 mr-2" />
-            New Post
-          </Button>
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-6 max-w-4xl">
+      <div className="container mx-auto px-4 py-4 sm:py-6 max-w-6xl">
         {/* Search and Sort */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4 sm:mb-6">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
             <Input
               placeholder="Search posts, tags, or content..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
+              className="pl-10 text-sm sm:text-base"
             />
           </div>
           <div className="flex space-x-2">
-            <Button variant={sortBy === "top" ? "default" : "outline"} onClick={() => setSortBy("top")} size="sm">
+            <Button 
+              variant={sortBy === "top" ? "default" : "outline"} 
+              onClick={() => setSortBy("top")} 
+              size="sm"
+              className="text-xs sm:text-sm px-3 sm:px-4"
+            >
               Top
             </Button>
-            <Button variant={sortBy === "new" ? "default" : "outline"} onClick={() => setSortBy("new")} size="sm">
+            <Button 
+              variant={sortBy === "new" ? "default" : "outline"} 
+              onClick={() => setSortBy("new")} 
+              size="sm"
+              className="text-xs sm:text-sm px-3 sm:px-4"
+            >
               New
             </Button>
           </div>
@@ -262,10 +279,10 @@ export default function CommunityPage() {
         )}
 
         {/* Posts */}
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {filteredPosts.map((post) => (
             <Card key={post._id} className="hover:shadow-md transition-shadow">
-              <CardContent className="p-6">
+              <CardContent className="p-4 sm:p-6">
                 {/* Post header with delete button for owners */}
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex-1">

@@ -88,3 +88,35 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* AI Response Formatting */
+.ai-response {
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.ai-response p {
+  margin-bottom: 0.75rem;
+}
+
+/* Format emojis and bullet points better */
+.ai-response::first-line {
+  font-weight: 500;
+}
+
+/* Better spacing for structured responses */
+.ai-response {
+  /* Handle emoji sections better */
+  word-spacing: 0.1em;
+}
+
+/* Improve readability for therapeutic responses */
+.ai-response {
+  color: #374151;
+  letter-spacing: 0.025em;
+}
+
+/* Better contrast for user messages */
+.dark .ai-response {
+  color: #e5e7eb;
+}
